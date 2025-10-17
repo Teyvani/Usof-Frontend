@@ -42,6 +42,7 @@ export const checkAuth = createAsyncThunk('auth/checkAuth', async (_, { rejectWi
 
 export const confirmEmail = createAsyncThunk('auth/confirmEmail', async (token, { rejectWithValue }) => {
     try {
+        if (!token) throw new Error('No token provided');
         const response = await axios.get(`/auth/confirm-email?token=${token}`);
         return response.data.message;
     } catch (error) {
@@ -92,8 +93,12 @@ const authSlice = createSlice({
     },
     reducers: {
         clearError: (state) => { state.error = null; },
-        updateUser: (state, action) => { 
-            state.user = { ...state.user, ...action.payload }; 
+        clearMessages: (state) => {
+            state.emailConfirmationMessage = null;
+            state.passwordResetMessage = null;
+        },
+        updateUser: (state, action) => {
+            state.user = { ...state.user, ...action.payload };
             sessionStorage.setItem('user', JSON.stringify(state.user));
         }
     },
@@ -195,7 +200,7 @@ const authSlice = createSlice({
     }
 });
 
-export const { clearError, updateUser } = authSlice.actions;
+export const { clearError, clearMessages, updateUser } = authSlice.actions;
 export default authSlice.reducer;
 
 export const selectUser = (state) => state.auth.user;

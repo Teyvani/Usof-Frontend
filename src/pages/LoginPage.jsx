@@ -40,9 +40,9 @@ const LoginPage = () => {
     };
 
     return (
-        <div className='login-page'>
-            <div className='login-card'>
-                <h2>Log in to USOF</h2>
+        <div className='auth-page'>
+            <div className='auth-card'>
+                <h2 className='auth-title'>Log in to USOF</h2>
                 <form onSubmit={handleSubmit} className='auth-form'>
                     {error && (<div className='error-message'>{error}</div>)}
                     <div className='form-group'>
@@ -56,6 +56,7 @@ const LoginPage = () => {
                     <div className='form-footer'>
                         <Link to='/register'>Don't have an account? Register</Link>
                         <Link to='/reset-password'>Forgot Password?</Link>
+                        {/* Add UI to resend email confirmation */}
                     </div>
                     <button type='submit' disabled={loading} className='submit-button'>{loading ? 'Logging in...' : 'Sign in'}</button>
                 </form>

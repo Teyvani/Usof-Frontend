@@ -14,11 +14,12 @@ import AdminRoute from './components/AdminRoute';
 // Routes
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
-/*import RegisterPage from './pages/RegisterPage';
+import RegisterPage from './pages/RegisterPage';
 import EmailConfirmationPage from './pages/EmailConfirmationPage';
+//Add component on the login page to resend email token where you can put your email
 import RequestPasswordResetPage from './pages/RequestPasswordResetPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
-import PostDetailPage from './pages/PostDetailPage';
+/*import PostDetailPage from './pages/PostDetailPage';
 import ProfilePage from './pages/ProfilePage';
 import EditProfilePage from './pages/EditProfilePage';
 import CreatePostPage from './pages/CreatePostPage';
@@ -32,48 +33,39 @@ import FollowedPostsPage from './pages/FollowedPostsPage';
 import AdminReportsPage from './pages/admin/AdminReportsPage';
 import AdminCategoriesPage from './pages/admin/AdminCategoriesPage';
 */
-/*
-const Layout = () => {
-  return(
-    <div>
-      <Header />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
-  )
-}
-*/
 
 const Layout = () => {
-  return(
-    <div>
-      <Header />
-      <main className="flex-grow">
-        <Outlet />
-      </main>
-    </div>
-  );
+    return (
+        <div>
+            <Header />
+            <main className="flex-grow">
+                <Outlet />
+            </main>
+        </div>
+    );
 }
 
 function App() {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  useEffect(() => { 
-    dispatch(checkAuth()); 
-  }, [dispatch]);
+    useEffect(() => { 
+        dispatch(checkAuth()); 
+    }, [dispatch]);
 
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route element={<Layout />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/confirm-email" element={<EmailConfirmationPage />} />
+                <Route path="/request-reset-password" element={<RequestPasswordResetPage />} />
+                <Route path="/reset-password" element={<ResetPasswordPage />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;

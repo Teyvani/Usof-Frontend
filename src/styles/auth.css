@@ -1,12 +1,18 @@
-.login-page {
+.auth-page {
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: aqua;
+    background-color: royalblue;
 }
 
-.login-card {
+.auth-title {
+    color: white;
+    text-align: center;
+}
+
+.auth-card {
+    color: white;
     width: 70vw;
 }
