@@ -33,9 +33,20 @@ export const logout = createAsyncThunk('auth/logout', async (_, { rejectWithValu
 export const checkAuth = createAsyncThunk('auth/checkAuth', async (_, { rejectWithValue }) => {
     try {
         const stored = sessionStorage.getItem('user');
-        if (stored) { return JSON.parse(stored); }
-        return null;
+        if (!stored) return null;
+
+        const user = JSON.parse(stored);
+        const response = await axios.get(`/users/${user.id}`);
+
+        if (response?.data?.user) {
+            sessionStorage.setItem('user', JSON.stringify(response.data.user));
+            return response.data.user;
+        } else {
+            sessionStorage.removeItem('user');
+            return null;
+        }
     } catch (error) {
+        sessionStorage.removeItem('user');
         return rejectWithValue('Auth check failed');
     }
 });

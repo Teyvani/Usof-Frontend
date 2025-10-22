@@ -200,24 +200,7 @@ const CommentSection = ({ postId, comments }) => {
         }));
         setNewComment('');
     };
-
-    const organizeComments = (comments) => {
-        const commentMap = {};
-        const rootComments = [];
-
-        comments.forEach(comment => {
-            commentMap[comment.id] = { ...comment, replies: [] };
-        });
-        comments.forEach(comment => {
-            if (comment.parent_comment_id && commentMap[comment.parent_comment_id]) {
-                commentMap[comment.parent_comment_id].replies.push(commentMap[comment.id]);
-            } else {
-                rootComments.push(commentMap[comment.id]);
-            }
-        });
-        return rootComments;
-    };
-    const organizedComments = organizeComments(comments);
+    const organizedComments = comments || [];
 
     return (
         <div className="comment-section">
@@ -244,12 +227,7 @@ const CommentSection = ({ postId, comments }) => {
                     <p className="no-comments">No answers yet. Be the first to answer!</p>
                 ) : (
                     organizedComments.map(comment => (
-                        <Comment
-                            key={comment.id}
-                            comment={comment}
-                            postId={postId}
-                            level={0}
-                        />
+                        <Comment key={comment.id} comment={comment} postId={postId} level={0}/>
                     ))
                 )}
             </div>
