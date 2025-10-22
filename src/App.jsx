@@ -11,6 +11,9 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
 */
 
+//Sections
+import PostsSection from './components/PostsSection';
+
 // Routes
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
@@ -19,8 +22,8 @@ import EmailConfirmationPage from './pages/EmailConfirmationPage';
 //Add component on the login page to resend email token where you can put your email
 import RequestPasswordResetPage from './pages/RequestPasswordResetPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
-/*import PostDetailPage from './pages/PostDetailPage';
-import ProfilePage from './pages/ProfilePage';
+import PostDetailPage from './pages/PostDetailPage';
+/*import ProfilePage from './pages/ProfilePage';
 import EditProfilePage from './pages/EditProfilePage';
 import CreatePostPage from './pages/CreatePostPage';
 import EditPostPage from './pages/EditPostPage';
@@ -56,7 +59,11 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route element={<Layout />}>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<HomePage />}>
+                    <Route path="/posts" element={<PostsSection />} />
+                    <Route path="/posts/:id" element={<PostDetailPage />} />
+
+                </Route>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/confirm-email" element={<EmailConfirmationPage />} />

@@ -68,12 +68,12 @@ export const requestPasswordReset = createAsyncThunk('auth/requestPasswordReset'
     }
 });
 
-export const resetPassword = createAsyncThunk('auth/resetPassword' , async ({ token, password, confirmRassword }, { rejectWithValue }) => {
+export const resetPassword = createAsyncThunk('auth/resetPassword' , async ({ token, password, confirmPassword }, { rejectWithValue }) => {
     try {
         const response = await axios.post('/auth/reset-password', { 
             token, 
             password,
-            'confirm-password': confirmRassword
+            'confirm-password': confirmPassword
         });
         return response.data.message;
     } catch (error) {
@@ -193,6 +193,20 @@ const authSlice = createSlice({
                 state.passwordResetMessage = action.payload;
             })
             .addCase(requestPasswordReset.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+                state.passwordResetMessage = null;
+            })
+            .addCase(resetPassword.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.passwordResetMessage = null;
+            })
+            .addCase(resetPassword.fulfilled, (state, action) => {
+                state.loading = false;
+                state.passwordResetMessage = action.payload;
+            })
+            .addCase(resetPassword.rejected, (state) => {
                 state.loading = false;
                 state.error = action.payload;
                 state.passwordResetMessage = null;

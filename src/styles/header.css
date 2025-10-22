@@ -1,0 +1,24 @@
+header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background-color: #1e40af;
+    color: white;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.logo h1 {
+    margin: 0px;
+}
+
+header div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.user-data img {
+    max-width: 30px;
+}

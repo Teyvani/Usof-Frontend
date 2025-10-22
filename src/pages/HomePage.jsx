@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import NavigationSection from '../components/NavigationSection';
+import '../styles/home.css'
+
 
 const HomePage = () => {
     return (
-        <div>
-            <h2 style={{ color: '#1e40af' }}>Home Page</h2>
-            <p>This is the home page of the application.</p>
-            <div>
-                <p>✅ Redux is working!</p>
-                <p>✅ React Router is working!</p>
-                <p>✅ Ready to build features!</p>
-            </div>
+        <div className="home-page">
+            <div className='div1'><NavigationSection /></div>
+            <div className='div2'><Outlet /></div>
         </div>
     );
 };

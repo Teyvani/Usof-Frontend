@@ -1,0 +1,260 @@
+.posts-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.posts-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.posts-section-header h1 {
+    font-size: 28px;
+    color: #1e40af;
+    margin: 0;
+}
+
+/* Filters */
+.filters-section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-bar {
+    margin-bottom: 15px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.filter-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-select,
+.filter-input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.filter-select {
+    min-width: 150px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #1e40af;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #1e3a8a;
+}
+
+.btn-secondary {
+    background-color: #6b7280;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: #4b5563;
+}
+
+/* Posts List */
+.posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.post-card {
+    display: flex;
+    gap: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: box-shadow 0.2s;
+}
+
+.post-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.post-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 80px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1e40af;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.post-content {
+    flex: 1;
+}
+
+.post-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e40af;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.post-title:hover {
+    color: #1e3a8a;
+}
+
+.post-excerpt {
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.post-categories {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.category-badge {
+    background-color: #dbeafe;
+    color: #1e40af;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.post-author {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.author-link {
+    color: #1e40af;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.author-link:hover {
+    text-decoration: underline;
+}
+
+.post-date {
+    margin-left: 5px;
+}
+
+/* Loading & Error States */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #6b7280;
+}
+
+.error-message {
+    background-color: #fee;
+    color: #c00;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.no-posts {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 8px;
+}
+
+.no-posts p {
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+/* Load More */
+.load-more {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .home-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+
+    .post-card {
+        flex-direction: column;
+    }
+
+    .post-stats {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .filter-controls {
+        flex-direction: column;
+    }
+
+    .filter-select,
+    .filter-input {
+        width: 100%;
+    }
+}
