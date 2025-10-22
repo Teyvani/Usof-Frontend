@@ -16,7 +16,7 @@ import {
     clearCurrentPost
 } from '../store/slices/postsSlice';
 import { selectUser, selectIsAuthenticated } from '../store/slices/authSlice';
-//import CommentSection from '../components/CommentSection';
+import CommentSection from '../components/CommentSection';
 //import '../styles/postsDetail.css'
 
 const PostDetailPage = () => {
