@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from '../store/store';
 
 const axiosInstance = axios.create({
     baseURL: 'http://localhost:3000/api',
@@ -7,6 +8,7 @@ const axiosInstance = axios.create({
         'Content-Type': 'application/json'
     }
 });
+let alreadyHandled401 = false;
 
 axiosInstance.interceptors.request.use(
     (config) => { return config; },
@@ -14,9 +16,20 @@ axiosInstance.interceptors.request.use(
 );
 
 axiosInstance.interceptors.response.use(
-    (response) => { return response; },
+    (response) => { 
+        alreadyHandled401 = false;
+        return response; 
+    },
     (error) => { 
-        if (error.response?.status === 401) {console.log('Unauthorized access');}
+        const status = error.response?.status;
+
+        if (status === 401) {
+            console.log('Unauthorized access (401) — forcing client logout');
+            if (!alreadyHandled401) {
+                alreadyHandled401 = true;
+                store.dispatch({ type: 'auth/forceLogout' });
+            }
+        }
         if (error.response?.status === 403) {console.log('Forbidden access');}
         if (error.response?.status === 404) {console.log('Not found');}
         if (error.response?.status === 500) {console.log('Server error');}

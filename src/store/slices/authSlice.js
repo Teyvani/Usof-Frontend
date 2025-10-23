@@ -26,6 +26,7 @@ export const logout = createAsyncThunk('auth/logout', async (_, { rejectWithValu
         sessionStorage.removeItem('user');
         return null;
     } catch (error) {
+        sessionStorage.removeItem('user');
         return rejectWithValue(error.response?.data?.error || 'Logout failed');
     }
 });
@@ -47,7 +48,7 @@ export const checkAuth = createAsyncThunk('auth/checkAuth', async (_, { rejectWi
         }
     } catch (error) {
         sessionStorage.removeItem('user');
-        return rejectWithValue('Auth check failed');
+        return null;
     }
 });
 
@@ -111,6 +112,13 @@ const authSlice = createSlice({
         updateUser: (state, action) => {
             state.user = { ...state.user, ...action.payload };
             sessionStorage.setItem('user', JSON.stringify(state.user));
+        },
+        forceLogout: (state) => {
+            state.user = null;
+            state.isAuthenticated = false;
+            state.loading = false;
+            state.error = null;
+            sessionStorage.removeItem('user');
         }
     },
     extraReducers: (builder) => {
@@ -149,7 +157,9 @@ const authSlice = createSlice({
                 state.loading = false;
             })
             .addCase(logout.rejected, (state, action) => {
+                state.user = null;
                 state.error = action.payload;
+                state.isAuthenticated = false
                 state.loading = false;
             })
             .addCase(checkAuth.pending, (state) => {

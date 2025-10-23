@@ -6,7 +6,9 @@ import {
     updateComment,
     deleteComment,
     likeComment,
-    unlikeComment
+    unlikeComment,
+    fetchPostComments,
+    fetchPostById
 } from '../store/slices/postsSlice';
 import { selectUser, selectIsAuthenticated } from '../store/slices/authSlice';
 
@@ -41,6 +43,7 @@ const Comment = ({ comment, postId, level = 0 }) => {
             content: replyContent,
             parent_comment_id: comment.id
         }));
+        await dispatch(fetchPostComments(postId));
         setReplyContent('');
         setIsReplying(false);
     };
@@ -52,12 +55,14 @@ const Comment = ({ comment, postId, level = 0 }) => {
             commentId: comment.id,
             content: editContent
         }));
+        await dispatch(fetchPostComments(postId));
         setIsEditing(false);
     };
 
     const handleDelete = async () => {
         if (window.confirm('Are you sure you want to delete this comment?')) {
             await dispatch(deleteComment({ commentId: comment.id, postId }));
+            await dispatch(fetchPostComments(postId));
         }
     };
 
@@ -73,6 +78,7 @@ const Comment = ({ comment, postId, level = 0 }) => {
             await dispatch(likeComment({ commentId: comment.id, type }));
             setUserLikeStatus(type);
         }
+        await dispatch(fetchPostComments(postId));
     };
     const isAuthor = user && user.id === comment.author_id;
     const canEdit = isAuthor || user?.role === 'admin';
@@ -114,11 +120,7 @@ const Comment = ({ comment, postId, level = 0 }) => {
                             <button type="submit" className="btn-primary btn-small">
                                 Save
                             </button>
-                            <button
-                                type="button"
-                                onClick={() => setIsEditing(false)}
-                                className="btn-secondary btn-small"
-                            > Cancel </button>
+                            <button type="button" onClick={() => setIsEditing(false)} className="btn-secondary btn-small"> Cancel </button>
                         </div>
                     </form>
                 ) : (<p className="comment-content">{comment.content}</p>)}
@@ -127,13 +129,11 @@ const Comment = ({ comment, postId, level = 0 }) => {
                     {isAuthenticated && level < maxNestLevel && !isEditing && (
                         <button onClick={() => setIsReplying(!isReplying)} className="comment-action-btn"> Reply </button>
                     )}
-
                     {isAuthor && !isEditing && (
                         <button onClick={() => setIsEditing(true)} className="comment-action-btn"> Edit </button>
                     )}
-
                     {canEdit && (
-                        <button onClick={handleDelete} className="comment-action-btn danger">Delete</button>
+                        <button onClick={handleDelete} className="comment-action-btn danger"> Delete </button>
                     )}
                 </div>
 
@@ -148,16 +148,8 @@ const Comment = ({ comment, postId, level = 0 }) => {
                             required
                         />
                         <div className="comment-form-actions">
-                            <button type="submit" className="btn-primary btn-small">
-                                Reply
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => setIsReplying(false)}
-                                className="btn-secondary btn-small"
-                            >
-                                Cancel
-                            </button>
+                            <button type="submit" className="btn-primary btn-small"> Reply </button>
+                            <button type="button" onClick={() => setIsReplying(false)} className="btn-secondary btn-small"> Cancel </button>
                         </div>
                     </form>
                 )}
@@ -165,12 +157,7 @@ const Comment = ({ comment, postId, level = 0 }) => {
                 {comment.replies && comment.replies.length > 0 && (
                     <div className="comment-replies">
                         {comment.replies.map(reply => (
-                            <Comment
-                                key={reply.id}
-                                comment={reply}
-                                postId={postId}
-                                level={level + 1}
-                            />
+                            <Comment key={reply.id} comment={reply} postId={postId} level={level + 1}/>
                         ))}
                     </div>
                 )}
@@ -198,6 +185,7 @@ const CommentSection = ({ postId, comments }) => {
             content: newComment,
             parent_comment_id: null
         }));
+        await dispatch(fetchPostComments(postId));
         setNewComment('');
     };
     const organizedComments = comments || [];
