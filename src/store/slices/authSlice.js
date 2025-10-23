@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../services/axios';
+import { act } from 'react';
 
 export const login = createAsyncThunk('auth/login', async (credentials, { rejectWithValue }) => {
     try {
@@ -90,6 +91,28 @@ export const resetPassword = createAsyncThunk('auth/resetPassword' , async ({ to
         return response.data.message;
     } catch (error) {
         return rejectWithValue(error.response?.data?.error || 'Reset failed');
+    }
+});
+
+export const updateProfile = createAsyncThunk('auth/updateProfile', async ({ userId, data }, { rejectWithValue }) => {
+    try {
+        const response = await axios.patch(`/users/${userId}`, data);
+        sessionStorage.setItem('user', JSON.stringify(response.data.user));
+        return response.data.user;
+    } catch (error) {
+        return rejectWithValue(error.response?.data?.error || 'Updateuser profile failed');
+    }
+});
+
+
+export const uploadAvatar = createAsyncThunk('auth/updateAvatar', async (formData, { rejectWithValue }) => {
+    try {
+        const response = await axios.patch(`/users/avatar`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        return response.data.path;
+    } catch (error) {
+        return rejectWithValue(error.response?.data?.error || 'Uploading avatar failed');
     }
 });
 
@@ -231,6 +254,33 @@ const authSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload;
                 state.passwordResetMessage = null;
+            })
+            .addCase(updateProfile.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(updateProfile.fulfilled, (state, action) => {
+                state.loading = false;
+                state.user = action.payload;
+            })
+            .addCase(updateProfile.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+            .addCase(uploadAvatar.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(uploadAvatar.fulfilled, (state, action) => {
+                state.loading = false;
+                if(state.user) {
+                    state.user.profile_picture = action.payload;
+                    sessionStorage.setItem('user', JSON.stringify(state.user));
+                }
+            })
+            .addCase(uploadAvatar.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
             });
     }
 });
