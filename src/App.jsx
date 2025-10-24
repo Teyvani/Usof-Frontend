@@ -25,11 +25,9 @@ import ResetPasswordPage from './pages/ResetPasswordPage';
 import PostDetailPage from './pages/PostDetailPage';
 import CreatePostPage from './pages/CreatePostPage';
 import EditPostPage from './pages/EditPostPage';
-/*import ProfilePage from './pages/ProfilePage';
-import EditProfilePage from './pages/EditProfilePage';
+import ProfilePage from './pages/ProfilePage';
 
-
-import CategoryPage from './pages/CategoryPage';
+/*import CategoryPage from './pages/CategoryPage';
 import CollectionsPage from './pages/CollectionsPage';
 import MyCollectionsPage from './pages/MyCollectionsPage';
 import CollectionDetailPage from './pages/CollectionDetailPage';
@@ -68,6 +66,8 @@ function App() {
                     <Route path="/posts/:id/edit" element={<EditPostPage />} />
 
                 </Route>
+
+                <Route path="/profile/:id" element={<ProfilePage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/confirm-email" element={<EmailConfirmationPage />} />

@@ -5,8 +5,10 @@ import { act } from 'react';
 export const login = createAsyncThunk('auth/login', async (credentials, { rejectWithValue }) => {
     try {
         const response = await axios.post('/auth/login', credentials);
-        sessionStorage.setItem('user', JSON.stringify(response.data.user));
-        return response.data.user;
+        const user = response.data.user;
+        const userResponse = await axios.get(`/users/${user.id}`);
+        sessionStorage.setItem('user', JSON.stringify(userResponse.data.user));
+        return userResponse.data.user;
     } catch (error) {
         return rejectWithValue(error.response?.data?.error || 'Login failed');
     }

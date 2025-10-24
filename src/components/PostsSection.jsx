@@ -8,7 +8,7 @@ import {
     selectPostsError,
     selectPagination
 } from '../store/slices/postsSlice';
-import '../styles/posts.css';
+//import '../styles/posts.css';
 
 const PostsSection = () => {
     const dispatch = useDispatch();

@@ -1,18 +1,108 @@
 .auth-page {
-    width: 100vw;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: royalblue;
-}
-
-.auth-title {
-    color: white;
-    text-align: center;
+    background-color: #2a2a2a;
+    padding: 20px;
 }
 
 .auth-card {
-    color: white;
-    width: 70vw;
+    background-color: #4d4d4d;
+    border: 2px solid #3fffbf;
+    border-radius: 5px;
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.auth-title {
+    color: #3fffbf;
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: #3fffbf;
+    font-size: 22px;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px;
+    background-color: #2a2a2a;
+    border: 2px solid #3fffbf;
+    border-radius: 5px;
+    color: #3fffbf;
+    font-family: "VT323", monospace;
+    font-size: 20px;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #3fffbf;
+    opacity: 0.7;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    background-color: #1a1a1a;
+}
+
+.form-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-footer a,
+.auth-link {
+    color: #3fffbf;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.form-footer a:hover,
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+.submit-button {
+    padding: 14px;
+    background-color: #3fffbf;
+    color: #2a2a2a;
+    border: 2px solid #3fffbf;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "VT323", monospace;
+    font-size: 24px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+
+.submit-button:hover:not(:disabled) {
+    background-color: #2a2a2a;
+    color: #3fffbf;
+}
+
+.submit-button:disabled {
+    background-color: #4d4d4d;
+    color: #a1ecd3;
+    cursor: not-allowed;
 }

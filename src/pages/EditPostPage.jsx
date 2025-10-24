@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updatePost, fetchPostById, selectCurrentPost, selectPostsLoading } from '../store/slices/postsSlice';
 import { selectUser, selectIsAuthenticated } from '../store/slices/authSlice';
 import axios from '../services/axios';
+import '../styles/post-details.css';
 
 const EditPostPage = () => {
     const { id } = useParams();
@@ -115,74 +116,36 @@ const EditPostPage = () => {
     if (!post) { return <div className="error-message">Post not found</div>; }
 
     return (
-        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '20px' }}>
-            <div style={{ background: 'white', padding: '30px', borderRadius: '8px' }}>
-                <h1 style={{ color: '#1e40af', marginBottom: '30px' }}>Edit Post</h1>
-                {error && (
-                    <div style={{ background: '#fee', color: '#c00', padding: '15px', borderRadius: '6px', marginBottom: '20px' }}>
-                        {error}
-                    </div>
-                )}
+        <div>
+            <div>
+                <h1>Edit Post</h1>
+                {error && (<div>{error}</div>)}
 
                 <form onSubmit={handleSubmit}>
-                    <div style={{ marginBottom: '25px' }}>
-                        <label style={{ display: 'block', fontWeight: '600', marginBottom: '8px' }}>Title *</label>
-                        <input
-                            type="text"
-                            name="title"
-                            value={formData.title}
-                            onChange={handleChange}
-                            placeholder="What's your question?"
-                            required
-                            maxLength="200"
-                            style={{ width: '100%', padding: '12px', border: '1px solid #ddd', borderRadius: '6px', fontSize: '15px' }}
-                        />
-                        <small style={{ display: 'block', color: '#6b7280', marginTop: '5px' }}>
-                            {formData.title.length}/200 characters
-                        </small>
+                    <div>
+                        <label>Title *</label>
+                        <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="What's your question?" required maxLength="200"/>
+                        <small>{formData.title.length}/200 characters</small>
                     </div>
-
-                    <div style={{ marginBottom: '25px' }}>
-                        <label style={{ display: 'block', fontWeight: '600', marginBottom: '8px' }}>
-                            Content *
-                        </label>
-                        <textarea
-                            name="content"
-                            value={formData.content}
-                            onChange={handleChange}
-                            placeholder="Provide details..."
-                            required
-                            rows="10"
-                            style={{ width: '100%', padding: '12px', border: '1px solid #ddd', borderRadius: '6px', fontSize: '15px', resize: 'vertical' }}
-                        />
+                    <div>
+                        <label>Content *</label>
+                        <textarea name="content" value={formData.content} onChange={handleChange} placeholder="Provide details..." required rows="10"/>
                     </div>
-
-                    <div style={{ marginBottom: '25px' }}>
-                        <label style={{ display: 'block', fontWeight: '600', marginBottom: '8px' }}>
-                            Categories * (Select at least one)
-                        </label>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '10px' }}>
+                    <div>
+                        <label>Categories * (Select at least one)</label>
+                        <div>
                             {categories.map(category => (
-                                <label key={category.id} style={{ display: 'flex', alignItems: 'center', padding: '10px', border: '1px solid #ddd', borderRadius: '6px', cursor: 'pointer' }}>
-                                    <input
-                                        type="checkbox"
-                                        checked={formData.categories.includes(category.id)}
-                                        onChange={() => handleCategoryChange(category.id)}
-                                        style={{ marginRight: '8px' }}
-                                    />
+                                <label key={category.id}>
+                                    <input type="checkbox" checked={formData.categories.includes(category.id)} onChange={() => handleCategoryChange(category.id)}/>
                                     <span>{category.title}</span>
                                 </label>
                             ))}
                         </div>
                     </div>
 
-                    <div style={{ display: 'flex', gap: '15px', marginTop: '30px' }}>
-                        <button type="submit" className="btn-primary" disabled={submitting} style={{ padding: '12px 30px', fontSize: '16px' }}>
-                            {submitting ? 'Saving...' : 'Save Changes'}
-                        </button>
-                        <button type="button" onClick={() => navigate(`/posts/${id}`)} className="btn-secondary" style={{ padding: '12px 30px', fontSize: '16px' }}>
-                            Cancel
-                        </button>
+                    <div>
+                        <button type="submit" className="btn-primary" disabled={submitting}>{submitting ? 'Saving...' : 'Save Changes'}</button>
+                        <button type="button" onClick={() => navigate(`/posts/${id}`)} className="btn-secondary">Cancel</button>
                     </div>
                 </form>
             </div>

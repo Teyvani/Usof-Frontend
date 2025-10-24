@@ -1,24 +1,103 @@
 header {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
     justify-content: space-between;
-    background-color: #1e40af;
-    color: white;
-    padding: 16px;
-    margin-bottom: 16px;
+    align-items: center;
+    background-color: #3fffbf;
+    color: #2a2a2a;
+    padding: 16px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.search-bar {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.search-input {
+    width: 100%;
+    max-width: 500px;
+    font-family: "VT323", monospace;
+    font-size: 20px;
+    text-align: center;
+    outline: none;
+    padding: 4px 6px;
+    transition: all 0.3s;
 }
 
 .logo h1 {
-    margin: 0px;
+    margin: 0;
+    font-size: 32px;
+    font-weight: 400;
+    color: #2a2a2a;
 }
 
-header div {
+.logo a {
+    text-decoration: none;
+    color: #2a2a2a;
+}
+
+.user-data {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    align-items: center;
+    gap: 12px;
 }
 
 .user-data img {
-    max-width: 30px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #2a2a2a;
+    background-color: #4d4d4d;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #2a2a2a;
+    font-size: 22px;
+}
+
+.user-role {
+    font-size: 16px;
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header-btn {
+    padding: 8px 16px;
+    background-color: #2a2a2a;
+    color: #3fffbf;
+    border: 2px solid #2a2a2a;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "VT323", monospace;
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.header-btn:hover {
+    background-color: #4d4d4d;
+    border-color: #4d4d4d;
+}
+
+.logout-btn {
+    background-color: #ff4d4d;
+    border-color: #ff4d4d;
+    color: white;
+}
+
+.logout-btn:hover {
+    background-color: #cc0000;
+    border-color: #cc0000;
 }

@@ -85,7 +85,7 @@ const Comment = ({ comment, postId, level = 0 }) => {
     const maxNestLevel = 3;
 
     return (
-        <div className={`comment ${level > 0 ? 'comment-nested' : ''}`} style={{ marginLeft: level * 30 }}>
+        <div className={`comment ${level > 0 ? 'comment-nested' : ''}`} style={{ marginLeft: level * 12 }}>
             <div className="comment-vote">
                 <button
                     className={`vote-btn-small ${userLikeStatus === 'like' ? 'active' : ''}`}

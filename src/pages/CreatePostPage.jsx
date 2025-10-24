@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createPost } from '../store/slices/postsSlice';
 import { selectUser, selectIsAuthenticated } from '../store/slices/authSlice';
 import axios from '../services/axios';
-//import '../styles/createPost.css';
+import '../styles/post-details.css';
 
 const CreatePostPage = () => {
     const dispatch = useDispatch();

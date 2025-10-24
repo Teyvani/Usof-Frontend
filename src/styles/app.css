@@ -1,4 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #2a2a2a;
+    --bg-light: #4d4d4d;
+    --accent: #3fffbf;
+    --text: #a1ecd3;
+}
+
 body {
     margin: 0;
     padding: 0;
+    font-family: "VT323", monospace;
+    background-color: #2a2a2a;
+    color: #3fffbf;
+    font-size: 20px;
+}
+
+.navigation {
+    background-color: #4d4d4d;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-height: 100vh;
+}
+
+.navigation div {
+    padding: 12px 16px;
+    background-color: #2a2a2a;
+    border: 2px solid #3fffbf;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    font-size: 22px;
+}
+
+.navigation div:hover {
+    background-color: #3fffbf;
+    color: #2a2a2a;
+}
+
+.navigation a {
+    color: #3fffbf;
+    text-decoration: none;
+}
+
+.navigation div:hover a {
+    color: #2a2a2a;
+}
+
+.btn-primary {
+    padding: 12px 24px;
+    background-color: #3fffbf;
+    color: #2a2a2a;
+    border: 2px solid #3fffbf;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "VT323", monospace;
+    font-size: 22px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+.btn-primary:hover {
+    background-color: #2a2a2a;
+    color: #3fffbf;
+}
+
+.btn-primary:active {
+    transform: scale(0.95);
+}
+
+.btn-primary:disabled {
+    background-color: #4d4d4d;
+    color: #a1ecd3;
+    border-color: #a1ecd3;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    padding: 12px 24px;
+    background-color: #4d4d4d;
+    color: #3fffbf;
+    border: 2px solid #3fffbf;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "VT323", monospace;
+    font-size: 22px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: #3fffbf;
+    color: #2a2a2a;
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 18px;
+}
+
+.loading, .loading-container {
+    text-align: center;
+    padding: 60px 20px;
+    color: #3fffbf;
+    font-size: 28px;
+}
+
+.error-message {
+    background-color: #4d1a1a;
+    color: #ff4d4d;
+    padding: 15px 20px;
+    border-radius: 5px;
+    border: 2px solid #ff4d4d;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.success-message, .confirmation-message {
+    background-color: #1a4d2e;
+    color: #3fffbf;
+    padding: 15px 20px;
+    border-radius: 5px;
+    border: 2px solid #3fffbf;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.no-posts {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #4d4d4d;
+    border: 2px solid #3fffbf;
+    border-radius: 5px;
+    color: #a1ecd3;
+    font-size: 24px;
+}
+
+.locked-message {
+    background-color: #4d3d1a;
+    color: #ffcc00;
+    padding: 15px 20px;
+    border-radius: 5px;
+    border: 2px solid #ffcc00;
+    margin: 20px 0;
+    font-size: 20px;
+}
+
+@media (max-width: 1024px) {
+    .home-page {
+        grid-template-columns: 200px 1fr;
+    }
+
+    body {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-page {
+        grid-template-columns: 1fr;
+    }
+
+    .navigation {
+        flex-direction: row;
+        min-height: auto;
+        overflow-x: auto;
+    }
+
+    .post-card {
+        flex-direction: column;
+    }
+
+    .post-stats {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .post-main {
+        flex-direction: column;
+    }
+
+    .vote-section {
+        flex-direction: row;
+    }
+
+    .filter-controls {
+        flex-direction: column;
+    }
+
+    .filter-select, .filter-input {
+        width: 100%;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .auth-card {
+        padding: 20px;
+    }
+}
+
+small {
+    color: #a1ecd3;
+    font-size: 16px;
+}
+
+.redirect-text {
+    color: #a1ecd3;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.disabled-input {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.load-more {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.post-stats-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #3fffbf;
+    color: #a1ecd3;
+    font-size: 18px;
 }

@@ -1,0 +1,86 @@
+.profile-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.profile-card {
+  background: #4d4d4d;
+  border: 2px solid #3fffbf;
+  padding: 30px;
+  border-radius: 10px;
+  color: #a1ecd3;
+  width: 400px;
+  text-align: center;
+  font-family: "VT323", monospace;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #3fffbf;
+  margin-bottom: 10px;
+  background-color: #2a2a2a;
+  object-fit: cover;
+}
+
+.upload-label {
+  display: block;
+  background-color: #2a2a2a;
+  color: #3fffbf;
+  border: 1px solid #3fffbf;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: fit-content;
+  margin: 10px auto;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-form input {
+  background-color: #2a2a2a;
+  color: #3fffbf;
+  border: 1px solid #3fffbf;
+  padding: 6px;
+  font-family: "VT323", monospace;
+}
+
+.btn-primary, .btn-secondary {
+  font-family: "VT323", monospace;
+  border: 2px solid #2a2a2a;
+  padding: 5px 10px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #3fffbf;
+  color: #2a2a2a;
+}
+
+.btn-secondary {
+  background-color: #2a2a2a;
+  color: #3fffbf;
+  border-color: #3fffbf;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.message {
+  margin-top: 10px;
+  color: #3fffbf;
+  font-size: 18px;
+}
