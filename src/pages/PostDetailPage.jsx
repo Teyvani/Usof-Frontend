@@ -17,6 +17,7 @@ import {
 } from '../store/slices/postsSlice';
 import { selectUser, selectIsAuthenticated } from '../store/slices/authSlice';
 import CommentSection from '../components/CommentSection';
+import default_avatar from '../assets/icons/default_avatar.svg';
 import '../styles/post-details.css'
 
 const PostDetailPage = () => {
@@ -124,7 +125,11 @@ const PostDetailPage = () => {
                     <h1 className="post-title">{post.title}</h1>
                     <div className="post-meta-info">
                         <span className="meta-item">
-                            Asked by{' '}<Link to={`/profile/${post.author_id}`} className="author-link">{post.author_login || post.author_name}</Link>
+                            <div className="user-data"><img src={post.author_avatar !== 'uploads/default_profile.png'
+                                ? `../../API/${post.author_avatar}`
+                                : default_avatar} alt='avatar'>
+                                </img></div>
+                            <Link to={`/profile/${post.author_id}`} className="author-link"> {post.author_name}</Link>
                         </span>
                         <span className="meta-item">{formatDate(post.published_at)}</span>
                         {post.updated_at !== post.published_at && (

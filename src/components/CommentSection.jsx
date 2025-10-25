@@ -11,6 +11,7 @@ import {
     fetchPostById
 } from '../store/slices/postsSlice';
 import { selectUser, selectIsAuthenticated } from '../store/slices/authSlice';
+import default_avatar from '../assets/icons/default_avatar.svg';
 
 const Comment = ({ comment, postId, level = 0 }) => {
     const dispatch = useDispatch();
@@ -102,8 +103,15 @@ const Comment = ({ comment, postId, level = 0 }) => {
 
             <div className="comment-body">
                 <div className="comment-header">
+                    <img src={ comment.author_avatar && comment.author_avatar !== 'uploads/default_profile.png'
+                        ? `../../API/${comment.author_avatar}`
+                        : default_avatar
+                        }
+                        alt="avatar"
+                        className="comment-avatar"
+                    />
                     <Link to={`/profile/${comment.author_id}`} className="comment-author">
-                        {comment.author_login}
+                        {comment.author_name}
                     </Link>
                     <span className="comment-date">{formatDate(comment.published_at)}</span>
                 </div>

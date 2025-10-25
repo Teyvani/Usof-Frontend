@@ -9,6 +9,7 @@ import {
     selectPostsError,
     selectPagination
 } from '../store/slices/postsSlice';
+import default_avatar from '../assets/icons/default_avatar.svg';
 
 const PostsSection = () => {
     const dispatch = useDispatch();
@@ -215,8 +216,11 @@ const PostsSection = () => {
 
                                     <div className="post-author">
                                         <span>asked by </span>
+                                        <img src={post.author_avatar !== 'uploads/default_profile.png'
+                                            ? `../../API/${post.author_avatar}`
+                                            : default_avatar} alt='avatar' className="author-avatar"></img>
                                         <Link to={`/profile/${post.author_id}`} className="author-link">
-                                            {post.author_login || post.author_name}
+                                            {post.author_name}
                                         </Link>
                                         <span className="post-date"> {formatDate(post.published_at)}</span>
                                     </div>
