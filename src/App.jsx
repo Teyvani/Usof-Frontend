@@ -59,15 +59,14 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route element={<Layout />}>
-                <Route path="/" element={<HomePage />}>
-                    <Route path="/posts" element={<PostsSection />} />
-                    <Route path="/posts/:id" element={<PostDetailPage />} />
-                    <Route path="/posts/create" element={<CreatePostPage />} />
-                    <Route path="/posts/:id/edit" element={<EditPostPage />} />
-
-                </Route>
-
+                <Route path="/" element={<HomePage />}/>
+                <Route path="/posts" element={<PostsSection />} />
+                <Route path="/posts/:id" element={<PostDetailPage />} />
+                <Route path="/posts/create" element={<CreatePostPage />} />
+                <Route path="/posts/:id/edit" element={<EditPostPage />} />
                 <Route path="/profile/:id" element={<ProfilePage />} />
+
+                
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/confirm-email" element={<EmailConfirmationPage />} />

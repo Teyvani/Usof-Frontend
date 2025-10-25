@@ -26,6 +26,10 @@ const Header = () => {
             <div className='logo'>
                 <Link to='/'><h1>Usof</h1></Link>
             </div>
+            <nav className="main-nav">
+                <Link to="/" className={`nav-link '/'}`}>Home</Link>
+                <Link to="/posts" className={`nav-link '/posts'}`}>Posts</Link>
+            </nav>
             <div className='search-bar'>
                 <input id='header-search-bar' type='text' placeholder='Search posts...' className='search-input'/>
             </div>
