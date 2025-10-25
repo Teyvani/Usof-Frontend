@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import {
     fetchPosts,
     selectPosts,
@@ -8,10 +8,10 @@ import {
     selectPostsError,
     selectPagination
 } from '../store/slices/postsSlice';
-//import '../styles/posts.css';
 
 const PostsSection = () => {
     const dispatch = useDispatch();
+    const [searchParams] = useSearchParams();
     const posts = useSelector(selectPosts);
     const loading = useSelector(selectPostsLoading);
     const error = useSelector(selectPostsError);
@@ -26,6 +26,11 @@ const PostsSection = () => {
         offset: 0
     });
     const [searchTerm, setSearchTerm] = useState('');
+
+    useEffect(() => {
+        const searchFromUrl = searchParams.get('search');
+        if (searchFromUrl) { setSearchTerm(searchFromUrl); }
+    }, [searchParams]);
 
     useEffect(() => {
         dispatch(fetchPosts(filters));
@@ -60,7 +65,7 @@ const PostsSection = () => {
         });
     };
 
-        return (
+    return (
         <div className="posts-section">
             <div className="posts-section-header">
                 <h1>All Questions</h1>

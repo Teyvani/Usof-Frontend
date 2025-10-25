@@ -34,6 +34,15 @@ const PostDetailPage = () => {
     const [userLikeStatus, setUserLikeStatus] = useState(null);
 
     useEffect(() => {
+        if (post) {
+        const userLike = post.likes?.find(like => like.author_id === user?.id);
+        setUserLikeStatus(userLike ? userLike.type : null);
+
+        if (typeof post?.is_following === 'boolean') { setIsFollowing(post.is_following); }
+    }
+    }, [post]);
+
+    useEffect(() => {
         dispatch(fetchPostById(id));
         dispatch(fetchPostComments(id));
         
@@ -65,6 +74,8 @@ const PostDetailPage = () => {
             await dispatch(likePost({ postId: id, type }));
             setUserLikeStatus(type);
         }
+
+        await dispatch(fetchPostById(id));
     }
 
     const handleFollow = async () => {
@@ -153,7 +164,7 @@ const PostDetailPage = () => {
                         {post.images && post.images.length > 0 && (
                             <div className="post-images">
                                 {post.images.map((image, idx) => (
-                                    <img key={idx} src={`http://localhost:3000/${image}`} alt={`Post image ${idx + 1}`} className="post-image"/>
+                                    <img key={idx} src={`../../API/${image}`} alt={`Post image ${idx + 1}`} className="post-image"/>
                                 ))}
                             </div>
                         )}

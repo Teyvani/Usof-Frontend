@@ -1,86 +1,177 @@
-.profile-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 0;
+.profile-page-container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+    padding: 30px;
+    min-height: calc(100vh - 72px);
+    background-color: #2a2a2a;
+}
+
+/* ЛІВА ЧАСТИНА - Профіль */
+.profile-sidebar {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
 }
 
 .profile-card {
-  background: #4d4d4d;
-  border: 2px solid #3fffbf;
-  padding: 30px;
-  border-radius: 10px;
-  color: #a1ecd3;
-  width: 400px;
-  text-align: center;
-  font-family: "VT323", monospace;
+    background: #4d4d4d;
+    border: 2px solid #3fffbf;
+    padding: 30px;
+    border-radius: 10px;
+    color: #a1ecd3;
+    text-align: center;
+    font-family: "VT323", monospace;
 }
 
 .profile-avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 3px solid #3fffbf;
-  margin-bottom: 10px;
-  background-color: #2a2a2a;
-  object-fit: cover;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #3fffbf;
+    margin-bottom: 15px;
+    background-color: #2a2a2a;
+    object-fit: cover;
+}
+
+.profile-card h2 {
+    color: #3fffbf;
+    font-size: 32px;
+    margin: 10px 0;
+    text-transform: uppercase;
+}
+
+.profile-role {
+    background-color: #2a2a2a;
+    color: #3fffbf;
+    padding: 5px 15px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px 0;
+    font-size: 18px;
+    border: 1px solid #3fffbf;
+}
+
+.profile-full-name {
+    font-size: 22px;
+    color: #a1ecd3;
+    margin: 10px 0;
+}
+
+.profile-email {
+    font-size: 18px;
+    color: #a1ecd3;
+    opacity: 0.8;
+    margin: 5px 0;
+}
+
+.profile-rating {
+    font-size: 24px;
+    color: #3fffbf;
+    margin: 15px 0;
+    font-weight: bold;
 }
 
 .upload-label {
-  display: block;
-  background-color: #2a2a2a;
-  color: #3fffbf;
-  border: 1px solid #3fffbf;
-  border-radius: 5px;
-  padding: 5px 10px;
-  width: fit-content;
-  margin: 10px auto;
-  cursor: pointer;
-  font-size: 18px;
+    display: block;
+    background-color: #2a2a2a;
+    color: #3fffbf;
+    border: 2px solid #3fffbf;
+    border-radius: 5px;
+    padding: 8px 16px;
+    width: fit-content;
+    margin: 15px auto;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s;
+}
+
+.upload-label:hover {
+    background-color: #3fffbf;
+    color: #2a2a2a;
 }
 
 .edit-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.edit-form label {
+    color: #3fffbf;
+    font-size: 20px;
+    text-align: left;
 }
 
 .edit-form input {
-  background-color: #2a2a2a;
-  color: #3fffbf;
-  border: 1px solid #3fffbf;
-  padding: 6px;
-  font-family: "VT323", monospace;
+    background-color: #2a2a2a;
+    color: #3fffbf;
+    border: 2px solid #3fffbf;
+    padding: 10px;
+    font-family: "VT323", monospace;
+    font-size: 18px;
+    border-radius: 5px;
 }
 
-.btn-primary, .btn-secondary {
-  font-family: "VT323", monospace;
-  border: 2px solid #2a2a2a;
-  padding: 5px 10px;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 5px;
+.edit-form input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
-.btn-primary {
-  background-color: #3fffbf;
-  color: #2a2a2a;
-}
-
-.btn-secondary {
-  background-color: #2a2a2a;
-  color: #3fffbf;
-  border-color: #3fffbf;
+.edit-form input:focus {
+    outline: none;
+    background-color: #1a1a1a;
 }
 
 .form-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .message {
-  margin-top: 10px;
-  color: #3fffbf;
-  font-size: 18px;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.message {
+    background-color: #1a4d2e;
+    color: #3fffbf;
+    border: 2px solid #3fffbf;
+}
+
+/* ПРАВА ЧАСТИНА - Пости */
+.profile-posts-section {
+    flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .profile-page-container {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-sidebar {
+        position: relative;
+        top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-page-container {
+        padding: 15px;
+    }
+
+    .profile-card {
+        padding: 20px;
+    }
+
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+    }
 }

@@ -116,26 +116,26 @@ const EditPostPage = () => {
     if (!post) { return <div className="error-message">Post not found</div>; }
 
     return (
-        <div>
-            <div>
+        <div className="create-post-page">
+            <div className="create-post-container">
                 <h1>Edit Post</h1>
-                {error && (<div>{error}</div>)}
+                {error && (<div className="error-message">{error}</div>)}
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="create-post-form">
                     <div>
                         <label>Title *</label>
                         <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="What's your question?" required maxLength="200"/>
                         <small>{formData.title.length}/200 characters</small>
                     </div>
-                    <div>
+                    <div className="form-group">
                         <label>Content *</label>
                         <textarea name="content" value={formData.content} onChange={handleChange} placeholder="Provide details..." required rows="10"/>
                     </div>
-                    <div>
+                    <div className="form-group">
                         <label>Categories * (Select at least one)</label>
-                        <div>
+                        <div className="categories-grid">
                             {categories.map(category => (
-                                <label key={category.id}>
+                                <label key={category.id} className="category-checkbox">
                                     <input type="checkbox" checked={formData.categories.includes(category.id)} onChange={() => handleCategoryChange(category.id)}/>
                                     <span>{category.title}</span>
                                 </label>
@@ -143,7 +143,7 @@ const EditPostPage = () => {
                         </div>
                     </div>
 
-                    <div>
+                    <div className="form-actions">
                         <button type="submit" className="btn-primary" disabled={submitting}>{submitting ? 'Saving...' : 'Save Changes'}</button>
                         <button type="button" onClick={() => navigate(`/posts/${id}`)} className="btn-secondary">Cancel</button>
                     </div>

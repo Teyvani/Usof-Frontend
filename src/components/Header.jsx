@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -15,11 +15,19 @@ const Header = () => {
     const navigate = useNavigate();
     const isAuthenticated = useSelector(selectIsAuthenticated);
     const user = useSelector(selectUser);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const handleLogout = async () => {
         await dispatch(logout());
         navigate('/login');
     };
+
+    const handleSearch = async (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            navigate(`/posts?search=${encodeURIComponent(searchQuery.trim())}`);
+        }
+    }
 
     return (
         <header>
@@ -27,12 +35,12 @@ const Header = () => {
                 <Link to='/'><h1>Usof</h1></Link>
             </div>
             <nav className="main-nav">
-                <Link to="/" className={`nav-link '/'}`}>Home</Link>
-                <Link to="/posts" className={`nav-link '/posts'}`}>Posts</Link>
+                <Link to="/" className={`nav-link`}>Home</Link>
+                <Link to="/posts" className={`nav-link`}>Posts</Link>
             </nav>
-            <div className='search-bar'>
-                <input id='header-search-bar' type='text' placeholder='Search posts...' className='search-input'/>
-            </div>
+            <form className='search-bar' onSubmit={handleSearch}>
+                <input id='header-search-bar' type='text' placeholder='Search posts...' className='search-input' value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+            </form>
             <div className='user-data'>
                 <Link to={isAuthenticated ? `/profile/${user?.id}` : '/login'} className='user-info'>
                     <img src={isAuthenticated 

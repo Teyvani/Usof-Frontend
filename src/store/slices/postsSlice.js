@@ -239,7 +239,8 @@ const postsSlice = createSlice({
                         state.comments[postId][index] = comment;
                     }
                 });
-            });
+            })
+            
     }
 });
 
