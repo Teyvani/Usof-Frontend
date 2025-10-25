@@ -51,6 +51,8 @@ const ResetPasswordPage = () => {
         }
 
         const token = searchParams.get('token');
+        console.log(token || "can't see");
+        
         dispatch(resetPassword({
             token,
             password: formData.password,

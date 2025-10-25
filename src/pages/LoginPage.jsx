@@ -12,10 +12,11 @@ import {
 import '../styles/auth.css';
 
 const LoginPage = () => {
-    const [credentials, setCredentials] = useState({ login: '', password: '' });
-
+    const [loginOrEmail, setLoginOrEmail] = useState('');
+    const [password, setPassword] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
     const error = useSelector(selectAuthError);
     const loading = useSelector(selectAuthLoading);
     const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -30,7 +31,13 @@ const LoginPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (loading) return;
-        const result = dispatch(login(credentials));
+
+        const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(loginOrEmail);
+        const payload = isEmail
+            ? { email: loginOrEmail, password }
+            : { login: loginOrEmail, password };
+            
+        const result = dispatch(login(payload));
         if (login.fulfilled.match(result)) {
             navigate('/');
         }

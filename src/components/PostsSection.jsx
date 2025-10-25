@@ -21,6 +21,7 @@ const PostsSection = () => {
 
     const [filters, setFilters] = useState({
         sort_by: 'likes',
+        status: 'all',
         categories: '',
         date_from: '',
         date_to: '',

@@ -42,7 +42,7 @@ const ProfilePage = () => {
                     full_name: userRes.data.user.full_name || ''
                 });
 
-                const postsRes = await axios.get(`/posts`);
+                const postsRes = await axios.get(`/posts?status=all`);
                 const userPosts = (postsRes.data.posts || []).filter(post => post.author_id === Number(id));
                 setAllPosts(userPosts);
             } catch (err) {
