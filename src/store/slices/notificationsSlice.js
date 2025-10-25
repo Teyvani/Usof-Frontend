@@ -70,4 +70,45 @@ const notificationsSlice = createSlice({
         clearError: (state) => {
             state.error = null;
         }
-    }});
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchNotifications.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchNotifications.fulfilled, (state, action) => {
+                state.loading = false;
+                state.notifications = action.payload;
+            })
+            .addCase(fetchNotifications.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+            .addCase(fetchUnreadCount.fulfilled, (state, action) => {
+                state.unreadCount = action.payload;
+            })
+            .addCase(markAsRead.fulfilled, (state, action) => {
+                const notification = state.notifications.find(n => n.id === action.payload);
+                if (notification) {
+                    notification.is_read = true;
+                    state.unreadCount = Math.max(0, state.unreadCount - 1);
+                }
+            })
+            .addCase(markAllAsRead.fulfilled, (state) => {
+                state.notifications.forEach(n => n.is_read = true);
+                state.unreadCount = 0;
+            })
+            .addCase(deleteNotification.fulfilled, (state, action) => {
+                state.notifications = state.notifications.filter(n => n.id !== action.payload);
+            });
+    }
+});
+
+export const { clearError } = notificationsSlice.actions;
+export default notificationsSlice.reducer;
+
+export const selectNotifications = (state) => state.notifications.notifications;
+export const selectUnreadCount = (state) => state.notifications.unreadCount;
+export const selectNotificationsLoading = (state) => state.notifications.loading;
+export const selectNotificationsError = (state) => state.notifications.error;

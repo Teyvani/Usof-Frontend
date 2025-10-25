@@ -176,7 +176,14 @@ const postsSlice = createSlice({
             })
             .addCase(fetchPosts.fulfilled, (state, action) => {
                 state.loading = false;
-                state.posts = action.payload.posts;
+                const isAppend = (action.meta?.arg?.offset ?? 0) > 0;
+                if (isAppend) {
+                    const merged = [...state.posts, ...action.payload.posts];
+                    const byId = new Map(merged.map(p => [p.id, p]));
+                    state.posts = Array.from(byId.values());
+                } else {
+                    state.posts = action.payload.posts;
+                }
                 state.pagination = action.payload.pagination;
             })
             .addCase(fetchPosts.rejected, (state, action) => {

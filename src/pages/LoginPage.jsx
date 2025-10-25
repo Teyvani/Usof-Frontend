@@ -16,7 +16,7 @@ const LoginPage = () => {
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
+
     const error = useSelector(selectAuthError);
     const loading = useSelector(selectAuthLoading);
     const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -42,9 +42,6 @@ const LoginPage = () => {
             navigate('/');
         }
     };
-    const handleChange = (e) => {
-        setCredentials({ ...credentials, [e.target.name]: e.target.value });
-    };
 
     return (
         <div className='auth-page'>
@@ -54,15 +51,15 @@ const LoginPage = () => {
                     {error && (<div className='error-message'>{error}</div>)}
                     <div className='form-group'>
                         <label htmlFor='login'>Login:</label>
-                        <input type='text' id='login' name= 'login' placeholder='Enter your username or email' value={credentials.login} onChange={handleChange} required/> 
+                        <input type='text' id='login' name= 'login' placeholder='Enter your username or email' value={loginOrEmail} onChange={(e) => setLoginOrEmail(e.target.value)} required/> 
                     </div>
                     <div className='form-group'>
                         <label htmlFor='password'>Password:</label>
-                        <input type='password' id='password' name='password' placeholder='Enter your password' value={credentials.password} onChange={handleChange} required />
+                        <input type='password' id='password' name='password' placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} required />
                     </div>
                     <div className='form-footer'>
                         <Link to='/register'>Don't have an account? Register</Link>
-                        <Link to='/reset-password'>Forgot Password?</Link>
+                        <Link to='/request-reset-password'>Forgot Password?</Link>
                         {/* Add UI to resend email confirmation */}
                     </div>
                     <button type='submit' disabled={loading} className='submit-button'>{loading ? 'Logging in...' : 'Sign in'}</button>

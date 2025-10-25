@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import NotificationDropdown from './NotificationDropdown';
 import { 
     selectUser,
     selectIsAuthenticated,
@@ -59,6 +60,7 @@ const Header = () => {
                     </div>
                 </Link>
             </div>
+            {isAuthenticated && <NotificationDropdown />}
             <div className='auth-buttons'>
                 {!isAuthenticated && (
                     <>
