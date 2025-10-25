@@ -6,7 +6,7 @@ export const fetchPosts =  createAsyncThunk('posts/fetchPosts', async (filters =
         const params = new URLSearchParams();
         if (filters.sort_by) params.append('sort_by', filters.sort_by);
         if (filters.categories) params.append('categories', filters.categories);
-        if (filters.status) params.append('categories', filters.status);
+        if (filters.status) params.append('status', filters.status);
         if (filters.date_from) params.append('date_from', filters.date_from);
         if (filters.date_to) params.append('date_to', filters.date_to);
         if (filters.limit) params.append('limit', filters.limit);

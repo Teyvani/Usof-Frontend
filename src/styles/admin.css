@@ -1,0 +1,250 @@
+.admin-panel {
+    min-height: calc(100vh - 72px);
+    background-color: #2a2a2a;
+    padding: 30px;
+}
+
+.admin-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.admin-container h1 {
+    color: #3fffbf;
+    font-size: 42px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.admin-message {
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.admin-message.success {
+    background-color: #1a4d2e;
+    color: #3fffbf;
+    border: 2px solid #3fffbf;
+}
+
+.admin-message.error {
+    background-color: #4d1a1a;
+    color: #ff4d4d;
+    border: 2px solid #ff4d4d;
+}
+
+.admin-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.admin-tab {
+    padding: 12px 24px;
+    background-color: #4d4d4d;
+    color: #3fffbf;
+    border: 2px solid #3fffbf;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "VT323", monospace;
+    font-size: 22px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+.admin-tab:hover {
+    background-color: #3a3a3a;
+}
+
+.admin-tab.active {
+    background-color: #3fffbf;
+    color: #2a2a2a;
+}
+
+.admin-content {
+    background-color: #4d4d4d;
+    border: 2px solid #3fffbf;
+    border-radius: 5px;
+    padding: 30px;
+}
+
+.admin-section h2 {
+    color: #3fffbf;
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.admin-form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.admin-input {
+    flex: 1;
+    min-width: 250px;
+    padding: 12px;
+    background-color: #2a2a2a;
+    border: 2px solid #3fffbf;
+    border-radius: 5px;
+    color: #3fffbf;
+    font-family: "VT323", monospace;
+    font-size: 20px;
+}
+
+.admin-input:focus {
+    outline: none;
+    background-color: #1a1a1a;
+}
+
+.admin-table {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.admin-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3a3a3a;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #3fffbf;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.admin-row-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.admin-row-info h3 {
+    color: #3fffbf;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.admin-row-info p {
+    color: #a1ecd3;
+    font-size: 18px;
+    margin: 4px 0;
+}
+
+.comment-preview {
+    font-style: italic;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+.admin-row-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.admin-select {
+    padding: 8px 12px;
+    background-color: #2a2a2a;
+    border: 2px solid #3fffbf;
+    border-radius: 5px;
+    color: #3fffbf;
+    font-family: "VT323", monospace;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.admin-select:focus {
+    outline: none;
+    background-color: #1a1a1a;
+}
+
+.btn-view {
+    padding: 8px 16px;
+    background-color: #2a2a2a;
+    color: #3fffbf;
+    border: 2px solid #3fffbf;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "VT323", monospace;
+    font-size: 18px;
+    transition: all 0.3s;
+}
+
+.btn-view:hover {
+    background-color: #3fffbf;
+    color: #2a2a2a;
+}
+
+.btn-delete {
+    padding: 8px 16px;
+    background-color: #4d1a1a;
+    color: #ff4d4d;
+    border: 2px solid #ff4d4d;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "VT323", monospace;
+    font-size: 18px;
+    transition: all 0.3s;
+}
+
+.btn-delete:hover {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.self-badge {
+    padding: 8px 16px;
+    background-color: #3fffbf;
+    color: #2a2a2a;
+    border-radius: 5px;
+    font-family: "VT323", monospace;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .admin-panel {
+        padding: 15px;
+    }
+
+    .admin-container h1 {
+        font-size: 32px;
+    }
+
+    .admin-tabs {
+        flex-direction: column;
+    }
+
+    .admin-tab {
+        width: 100%;
+    }
+
+    .admin-content {
+        padding: 15px;
+    }
+
+    .admin-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-row-actions {
+        width: 100%;
+    }
+
+    .admin-select,
+    .btn-view,
+    .btn-delete {
+        flex: 1;
+    }
+}
