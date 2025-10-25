@@ -131,7 +131,6 @@ header .search-bar {
   font-weight: bold;
 }
 
-/* Notification Dropdown Styles */
 .notification-dropdown {
     position: relative;
 }
@@ -145,6 +144,11 @@ header .search-bar {
     cursor: pointer;
     font-size: 24px;
     transition: all 0.3s;
+}
+
+#bell {
+    width: 30px;
+    height: 30px;
 }
 
 .notification-bell:hover {
@@ -286,7 +290,6 @@ header .search-bar {
     margin: 0;
 }
 
-/* Scrollbar styles */
 .notification-list::-webkit-scrollbar {
     width: 8px;
 }

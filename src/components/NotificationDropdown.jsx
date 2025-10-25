@@ -10,6 +10,7 @@ import {
     selectNotifications,
     selectUnreadCount
 } from '../store/slices/notificationsSlice';
+import BellIcon from '../assets/icons/bell.svg';
 
 const NotificationDropdown = () => {
     const dispatch = useDispatch();
@@ -40,11 +41,12 @@ const NotificationDropdown = () => {
     const handleNotificationClick = async (notification) => {
         if (!notification.is_read) {
             await dispatch(markAsRead(notification.id));
+            await dispatch(fetchUnreadCount());
         }
-        
-        if (notification.target_type === 'post' && notification.target_id) {
-            navigate(`/posts/${notification.target_id}`);
-        } else if (notification.target_type === 'comment' && notification.target_id) {
+        if (notification.target_type === 'comment') {
+            navigate(`/posts/${notification.post_id}`);
+        }
+        else if (notification.target_type === 'post' && notification.target_id) {
             navigate(`/posts/${notification.target_id}`);
         }
         
@@ -78,7 +80,7 @@ const NotificationDropdown = () => {
     return (
         <div className="notification-dropdown" ref={dropdownRef}>
             <button className="notification-bell" onClick={() => setIsOpen(!isOpen)}>
-                🔔
+                <img src={BellIcon} id="bell" alt='bell'/>
                 {unreadCount > 0 && (
                     <span className="notification-badge">{unreadCount}</span>
                 )}

@@ -76,6 +76,7 @@ const PostsSection = () => {
     };
 
     const handleLoadMore = () => {
+        if (loading) return;
         setFilters(prev => ({
             ...prev,
             offset: prev.offset + prev.limit
