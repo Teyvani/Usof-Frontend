@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from '../services/axios';
 import { Link, useSearchParams } from 'react-router-dom';
 import {
     fetchPosts,
@@ -26,17 +27,45 @@ const PostsSection = () => {
         offset: 0
     });
     const [searchTerm, setSearchTerm] = useState('');
+    const [categories, setCategories] = useState([]);
+    const [selectedCategories, setSelectedCategories] = useState([]);
 
     useEffect(() => {
         const searchFromUrl = searchParams.get('search');
         if (searchFromUrl) { setSearchTerm(searchFromUrl); }
+    
+        const fetchCategories = async () => {
+            try {
+                const { data } = await axios.get('/categories');
+                setCategories(data.categories || []);
+            } catch (error) {
+                console.error('Failed to fetch categories:', error);
+            }
+        };
+        fetchCategories();
     }, [searchParams]);
 
     useEffect(() => {
         dispatch(fetchPosts(filters));
     }, [dispatch, filters]);
 
-     const handleFilterChange = (key, value) => {
+    const handleCategoryToggle = (categoryId) => {
+        setSelectedCategories(prev => {
+            const newCategories = prev.includes(categoryId)
+                ? prev.filter(id => id !== categoryId)
+                : [...prev, categoryId];
+
+            setFilters(prevFilters => ({
+                ...prevFilters,
+                categories: newCategories.join(','),
+                offset: 0
+            }));
+        
+            return newCategories;
+        });
+    }
+
+    const handleFilterChange = (key, value) => {
         setFilters(prev => ({
             ...prev,
             [key]: value,
@@ -84,52 +113,66 @@ const PostsSection = () => {
                 </div>
 
                 <div className="filter-controls">
-                    <select
-                        value={filters.sort_by}
-                        onChange={(e) => handleFilterChange('sort_by', e.target.value)}
-                        className="filter-select"
-                    >
-                        <option value="likes">Most Liked</option>
-                        <option value="date">Most Recent</option>
-                    </select>
+                    <div className='filter-row'>
+                        <select
+                            value={filters.sort_by}
+                            onChange={(e) => handleFilterChange('sort_by', e.target.value)}
+                            className="filter-select"
+                        >
+                            <option value="likes">Most Liked</option>
+                            <option value="date">Most Recent</option>
+                        </select>
 
-                    <input
-                        type="date"
-                        value={filters.date_from}
-                        onChange={(e) => handleFilterChange('date_from', e.target.value)}
-                        placeholder="From date"
-                        className="filter-input"
-                    />
+                        <input
+                            type="date"
+                            value={filters.date_from}
+                            onChange={(e) => handleFilterChange('date_from', e.target.value)}
+                            placeholder="From date"
+                            className="filter-input"/>
 
-                    <input
-                        type="date"
-                        value={filters.date_to}
-                        onChange={(e) => handleFilterChange('date_to', e.target.value)}
-                        placeholder="To date"
-                        className="filter-input"
-                    />
+                        <input
+                            type="date"
+                            value={filters.date_to}
+                            onChange={(e) => handleFilterChange('date_to', e.target.value)}
+                            placeholder="To date"
+                            className="filter-input"
+                        />
 
-                    <button 
-                        onClick={() => setFilters({
-                            sort_by: 'likes',
-                            categories: '',
-                            date_from: '',
-                            date_to: '',
-                            limit: 20,
-                            offset: 0
-                        })}
-                        className="btn-secondary"
-                    >
-                        Clear Filters
-                    </button>
+                        <button 
+                            onClick={() => {
+                                setFilters({
+                                    sort_by: 'likes',
+                                    categories: '',
+                                    date_from: '',
+                                    date_to: '',
+                                    limit: 20,
+                                    offset: 0
+                                });
+                                setSelectedCategories([]);
+                            }}
+                            className="btn-secondary">Clear Filters</button>
+                    </div>
+                    {categories.length > 0 && (
+                        <div className="categories-filter">
+                            <h3>Filter by Categories:</h3>
+                            <div className="categories-grid">
+                                {categories.map(category => (
+                                    <label key={category.id} className="category-checkbox">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedCategories.includes(category.id)}
+                                            onChange={() => handleCategoryToggle(category.id)}
+                                        />
+                                    <span>{category.title}</span>
+                                    </label>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
 
-            {error && (
-                <div className="error-message">
-                    {error}
-                </div>
-            )}
+            {error && (<div className="error-message">{error}</div>)}
 
             {loading && filters.offset === 0 && (
                 <div className="loading">Loading posts...</div>
@@ -156,9 +199,7 @@ const PostsSection = () => {
                             </div>
 
                             <div className="post-content">
-                                <Link to={`/posts/${post.id}`} className="post-title">
-                                    {post.title}
-                                </Link>
+                                <Link to={`/posts/${post.id}`} className="post-title">{post.title}</Link>
                                 
                                 <p className="post-excerpt">
                                     {post.content.substring(0, 200)}
@@ -168,9 +209,7 @@ const PostsSection = () => {
                                 <div className="post-meta">
                                     <div className="post-categories">
                                         {post.categories && post.categories.map((category, idx) => (
-                                            <span key={idx} className="category-badge">
-                                                {category}
-                                            </span>
+                                            <span key={idx} className="category-badge">{category}</span>
                                         ))}
                                     </div>
 
@@ -190,9 +229,7 @@ const PostsSection = () => {
 
             {pagination.hasMore && !loading && filteredPosts.length > 0 && (
                 <div className="load-more">
-                    <button onClick={handleLoadMore} className="btn-secondary">
-                        Load More Posts
-                    </button>
+                    <button onClick={handleLoadMore} className="btn-secondary">Load More Posts</button>
                 </div>
             )}
 

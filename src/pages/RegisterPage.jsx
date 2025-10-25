@@ -30,7 +30,7 @@ const RegisterPage = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        if (confirmationMessage) { setTimeout(() => navigate('/login'), 5000); }
+        if (confirmationMessage) { setTimeout(() => navigate('/login'), 3000); }
     }, [confirmationMessage, navigate]);
 
     const handleSubmit = async (e) => {
@@ -56,7 +56,7 @@ const RegisterPage = () => {
                     {(error || localError) && (<div className='error-message'>{error || localError}</div>)}
                     {confirmationMessage && (<div className='confirmation-message'>{confirmationMessage}<p className='redirect-text'>Redirecting to login...</p></div>)}
                     <div className='form-group'>
-                        <label htmlFor='login'>Username *</label>
+                        <label htmlFor='login'>Username</label>
                         <input type='text' id='login' name='login' value={formData.login} placeholder='Choose a username' required onChange={handleChange} />
                     </div>
                     <div className='form-group'>

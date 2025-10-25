@@ -74,8 +74,14 @@
 
 .filter-controls {
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.filter-row {
+    display: flex;
     flex-wrap: wrap;
+    gap: 15px;
 }
 
 .filter-select, .filter-input {
@@ -198,4 +204,52 @@
 
 .author-link:hover {
     text-decoration: underline;
+}
+
+.categories-filter {
+    width: 100%;
+    margin-top: 0px;
+    border-top: 1px solid #3fffbf;
+    padding-top: 0px;
+}
+
+.categories-filter h3 {
+    font-family: "VT323", monospace;
+    font-size: 22px;
+    color: #3fffbf;
+    margin-bottom: 10px;
+}
+
+.categories-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-checkbox {
+    display: flex;
+    align-items: center;
+    background-color: #2a2a2a;
+    border: 1px solid #3fffbf;
+    border-radius: 5px;
+    padding: 6px 10px;
+    cursor: pointer;
+    color: #3fffbf;
+    transition: all 0.2s ease-in-out;
+}
+
+.category-checkbox input {
+    margin-right: 8px;
+    accent-color: #3fffbf;
+}
+
+.category-checkbox:hover {
+    background-color: #3a3a3a;
+}
+
+.category-checkbox input:checked + span {
+    color: #2a2a2a;
+    background-color: #3fffbf;
+    border-radius: 4px;
+    padding: 2px 4px;
 }

@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { 
     selectUser,
     selectIsAuthenticated,
+    selectIsAdmin,
     logout
 } from '../store/slices/authSlice';
 
@@ -15,6 +16,7 @@ const Header = () => {
     const navigate = useNavigate();
     const isAuthenticated = useSelector(selectIsAuthenticated);
     const user = useSelector(selectUser);
+    const isAdmin = useSelector(selectIsAdmin);
     const [searchQuery, setSearchQuery] = useState('');
 
     const handleLogout = async () => {
@@ -37,6 +39,9 @@ const Header = () => {
             <nav className="main-nav">
                 <Link to="/" className={`nav-link`}>Home</Link>
                 <Link to="/posts" className={`nav-link`}>Posts</Link>
+                {isAdmin && (
+                    <Link to="/admin" className={`nav-link admin-link`}>Admin Panel</Link>
+                )}
             </nav>
             <form className='search-bar' onSubmit={handleSearch}>
                 <input id='header-search-bar' type='text' placeholder='Search posts...' className='search-input' value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>

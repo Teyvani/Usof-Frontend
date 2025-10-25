@@ -26,6 +26,7 @@ import PostDetailPage from './pages/PostDetailPage';
 import CreatePostPage from './pages/CreatePostPage';
 import EditPostPage from './pages/EditPostPage';
 import ProfilePage from './pages/ProfilePage';
+//import AdminPanelPage from './pages/AdminPanelPage';
 
 /*import CategoryPage from './pages/CategoryPage';
 import CollectionsPage from './pages/CollectionsPage';
@@ -65,6 +66,7 @@ function App() {
                 <Route path="/posts/create" element={<CreatePostPage />} />
                 <Route path="/posts/:id/edit" element={<EditPostPage />} />
                 <Route path="/profile/:id" element={<ProfilePage />} />
+                {/*<Route path="/admin" element={<AdminPanelPage />} />*/}
 
                 
                 <Route path="/login" element={<LoginPage />} />

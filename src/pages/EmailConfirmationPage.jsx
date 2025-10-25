@@ -20,7 +20,7 @@ const EmailConfirmationPage = () => {
 
     useEffect(() => {
         const token = searchParams.get('token');
-        dispatch(confirmEmail(token));
+        if (token) { dispatch(confirmEmail(token)); }
 
         return () => {
             dispatch(clearError());
