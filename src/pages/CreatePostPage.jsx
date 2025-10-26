@@ -120,6 +120,7 @@ const CreatePostPage = () => {
 
     return (
         <div className="create-post-page">
+            <div className="home-background"></div>
             <div className="create-post-container">
                 <h1>Ask a Question</h1>
                 {error && (<div className="error-message">{error}</div>)}

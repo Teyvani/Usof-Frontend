@@ -14,6 +14,7 @@ header {
     flex: 1;
     display: flex;
     justify-content: center;
+    min-width: 160px;
 }
 
 header .search-bar {
@@ -108,7 +109,7 @@ header .search-bar {
 
 .main-nav {
   display: flex;
-  gap: 50px;
+  gap: 10px;
   align-items: center;
 }
 

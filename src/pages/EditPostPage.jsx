@@ -117,12 +117,13 @@ const EditPostPage = () => {
 
     return (
         <div className="create-post-page">
+            <div className="home-background"></div>
             <div className="create-post-container">
                 <h1>Edit Post</h1>
                 {error && (<div className="error-message">{error}</div>)}
 
                 <form onSubmit={handleSubmit} className="create-post-form">
-                    <div>
+                    <div className="form-group">
                         <label>Title *</label>
                         <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="What's your question?" required maxLength="200"/>
                         <small>{formData.title.length}/200 characters</small>

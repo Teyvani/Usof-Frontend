@@ -130,6 +130,7 @@ const ProfilePage = () => {
 
     return (
         <div className="profile-page-container">
+            <div className="home-background"></div>
             <div className="profile-sidebar">
                 <div className="profile-card">
                     <img src={avatarUrl} alt="avatar" className="profile-avatar" />

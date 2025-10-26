@@ -50,6 +50,7 @@ const RegisterPage = () => {
 
     return (
         <div className='auth-page'>
+            <div className="home-background"></div>
             <div className='auth-card'>
                 <h2 className='auth-title'>Create Account</h2>
                 <form onSubmit={handleSubmit} className='auth-form'>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "../services/axios";
 import {
     fetchPostById,
     fetchPostComments,
@@ -35,13 +36,23 @@ const PostDetailPage = () => {
     const [userLikeStatus, setUserLikeStatus] = useState(null);
 
     useEffect(() => {
-        if (post) {
-        const userLike = post.likes?.find(like => like.author_id === user?.id);
-        setUserLikeStatus(userLike ? userLike.type : null);
+        const checkStatuses = async () => {
+            if (!isAuthenticated || !user) return;
 
-        if (typeof post?.is_following === 'boolean') { setIsFollowing(post.is_following); }
-    }
-    }, [post]);
+            try {
+                const followRes =  await axios.get(`/posts/${id}/follow-status`);
+                setIsFollowing(followRes.data.is_following);
+
+                const likesRes = await axios.get(`/posts/${id}/like`);
+                const userLike = likesRes.data.likes?.find(like => like.author_id === user.id);
+                setUserLikeStatus(userLike ? userLike.type : null);
+            } catch (error) {
+                console.error('Failed to check statuses:', error);
+            }
+        };
+
+        if (post && isAuthenticated) { checkStatuses(); }
+    }, [post, id, isAuthenticated, user]);
 
     useEffect(() => {
         dispatch(fetchPostById(id));
@@ -92,6 +103,7 @@ const PostDetailPage = () => {
             await dispatch(followPost(id));
             setIsFollowing(true);
         }
+        await dispatch(fetchPostById(id));
     };
 
     const handleDelete = async () => {

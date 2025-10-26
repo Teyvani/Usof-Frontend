@@ -34,6 +34,7 @@ const EmailConfirmationPage = () => {
 
     return (
         <div className='auth-page'>
+            <div className="home-background"></div>
             <div className='auth-card'>
                 <h2 className='auth-title'>Email Confirmation</h2>
             </div>

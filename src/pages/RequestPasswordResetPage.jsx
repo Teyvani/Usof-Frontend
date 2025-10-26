@@ -32,6 +32,7 @@ const RequestPasswordResetPage = () => {
 
     return (
         <div className="auth-page">
+            <div className="home-background"></div>
             <div className="auth-card">
                 <h2 className="auth-title">Request Password Reset</h2>
                 <form onSubmit={handleSubmit} className="auth-form">

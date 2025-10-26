@@ -69,6 +69,7 @@ const ResetPasswordPage = () => {
 
     return (
         <div className='auth-page'>
+            <div className="home-background"></div>
             <div className='auth-card'>
                 <h2 className='auth-title'>Reset Password</h2>
                 {localError && <div className='error-message'>{localError}</div>}
@@ -102,7 +103,7 @@ const ResetPasswordPage = () => {
                                 required
                             />
                         </div>
-                            <button type='submit' className='auth-button' disabled={loading}>
+                            <button type='submit' className='auth-button submit-button' disabled={loading}>
                             {loading ? 'Resetting...' : 'Reset Password'}
                         </button>
                     </form>
