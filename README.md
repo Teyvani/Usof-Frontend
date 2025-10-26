@@ -85,3 +85,6 @@ npm run dev
 ![Post details](documentation-screenshots/post_details.png)
 ![Nested comments](documentation-screenshots/nested_comments.png)
 ![New Notification](documentation-screenshots/new_notification.png)
+---
+## Author
+Diana Malashta Innovation Campus NTU "KhPI" FullStack Track Challenge
