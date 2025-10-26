@@ -115,6 +115,28 @@ body {
     font-size: 28px;
 }
 
+.error-container {
+    display: flex;
+    width: 90vw;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.error-container .btn-primary {
+    max-width: 160px;
+}
+
+.error-container h2 {
+    font-size: 30px;
+}
+
+.error-container p {
+    font-size: 25px;
+}
+
 .error-message {
     background-color: #4d1a1a;
     color: #ff4d4d;

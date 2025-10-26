@@ -219,7 +219,7 @@ const PostsSection = () => {
                                     <div className="post-author">
                                         <span>asked by </span>
                                         <img src={post.author_avatar !== 'uploads/default_profile.png'
-                                            ? `../../API/${post.author_avatar}`
+                                            ? `http://localhost:3000/${post.author_avatar}`
                                             : default_avatar} alt='avatar' className="author-avatar"></img>
                                         <Link to={`/profile/${post.author_id}`} className="author-link">
                                             {post.author_name}

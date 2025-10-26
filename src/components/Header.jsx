@@ -51,7 +51,7 @@ const Header = () => {
                 <Link to={isAuthenticated ? `/profile/${user?.id}` : '/login'} className='user-info'>
                     <img src={isAuthenticated 
                         ? user.profile_picture !== 'uploads/default_profile.png'
-                        ? `../../API/${user.profile_picture}` : default_avatar 
+                        ? `http://localhost:3000/${user.profile_picture}` : default_avatar 
                         : default_avatar} alt='avatar'>
                     </img>
                     <div>

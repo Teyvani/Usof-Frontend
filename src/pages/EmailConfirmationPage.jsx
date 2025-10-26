@@ -37,27 +37,27 @@ const EmailConfirmationPage = () => {
             <div className="home-background"></div>
             <div className='auth-card'>
                 <h2 className='auth-title'>Email Confirmation</h2>
-            </div>
-            {loading && (
-                <p className='confirmation-message'>Confirming your email...</p>
-            )}
+                {loading && (
+                    <p className='confirmation-message'>Confirming your email...</p>
+                )}
 
-            {error && (
-                <div className='error-message'>
-                    {error}
-                    <div className='form-footer'>
-                        <Link to='/login' className='auth-link'>Go to Login</Link>
-                        <Link to='/register' className='auth-link'>Go to Register</Link>
+                {error && (
+                    <div className='error-message'>
+                        {error}
+                        <div className='form-footer'>
+                            <Link to='/login' className='auth-link'>Go to Login</Link>
+                            <Link to='/register' className='auth-link'>Go to Register</Link>
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
 
-            {message && (
-                <div className='success-message'>
-                    <p>{message}</p>
-                    <p className='redirect-text'>Redirecting to login...</p>
-                </div>
-            )}
+                {message && (
+                    <div className='success-message'>
+                        <p>{message}</p>
+                        <p className='redirect-text'>Redirecting to login...</p>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

@@ -125,7 +125,7 @@ const ProfilePage = () => {
     const avatarUrl = preview 
         ? preview
         : user.profile_picture && user.profile_picture !== 'uploads/default_profile.png'
-        ? `../../API/${user.profile_picture}`
+        ? `http://localhost:3000/${user.profile_picture}`
         : default_avatar;
 
     return (

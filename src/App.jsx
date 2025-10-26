@@ -5,11 +5,6 @@ import { checkAuth } from './store/slices/authSlice';
 
  //Layout
 import Header from './components/Header';
-/*
-import Footer from './components/Footer';
-import ProtectedRoute from './components/ProtectedRoute';
-import AdminRoute from './components/AdminRoute';
-*/
 
 //Sections
 import PostsSection from './components/PostsSection';
@@ -19,7 +14,6 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import EmailConfirmationPage from './pages/EmailConfirmationPage';
-//Add component on the login page to resend email token where you can put your email
 import RequestPasswordResetPage from './pages/RequestPasswordResetPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import PostDetailPage from './pages/PostDetailPage';
@@ -67,13 +61,12 @@ function App() {
                 <Route path="/posts/:id/edit" element={<EditPostPage />} />
                 <Route path="/profile/:id" element={<ProfilePage />} />
                 <Route path="/admin" element={<AdminPanelPage />} />*/
-
-                
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/confirm-email" element={<EmailConfirmationPage />} />
                 <Route path="/request-reset-password" element={<RequestPasswordResetPage />} />
                 <Route path="/reset-password" element={<ResetPasswordPage />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
                 </Route>
             </Routes>
         </BrowserRouter>

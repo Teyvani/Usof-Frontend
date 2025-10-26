@@ -104,7 +104,7 @@ const Comment = ({ comment, postId, level = 0 }) => {
             <div className="comment-body">
                 <div className="comment-header">
                     <img src={ comment.author_avatar && comment.author_avatar !== 'uploads/default_profile.png'
-                        ? `../../API/${comment.author_avatar}`
+                        ? `http://localhost:3000/${comment.author_avatar}`
                         : default_avatar
                         }
                         alt="avatar"

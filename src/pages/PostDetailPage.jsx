@@ -18,6 +18,8 @@ import {
 } from '../store/slices/postsSlice';
 import { selectUser, selectIsAuthenticated } from '../store/slices/authSlice';
 import CommentSection from '../components/CommentSection';
+import ImageModal from '../components/ImageModal';
+import default_post_image from '../assets/icons/default_post_image.svg';
 import default_avatar from '../assets/icons/default_avatar.svg';
 import '../styles/post-details.css'
 
@@ -34,6 +36,7 @@ const PostDetailPage = () => {
 
     const [isFollowing, setIsFollowing] = useState(false);
     const [userLikeStatus, setUserLikeStatus] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
 
     useEffect(() => {
         const checkStatuses = async () => {
@@ -113,6 +116,11 @@ const PostDetailPage = () => {
         }
     };
 
+    const getImageURL = (imagePath) => {
+        if (!imagePath) return default_post_image;
+        return `http://localhost:3000/${imagePath}`;
+    }
+
     if (loading && !post) {
         return <div className="loading-container">Loading post...</div>;
     }
@@ -138,7 +146,7 @@ const PostDetailPage = () => {
                     <div className="post-meta-info">
                         <span className="meta-item">
                             <div className="user-data"><img src={post.author_avatar !== 'uploads/default_profile.png'
-                                ? `../../API/${post.author_avatar}`
+                                ? `http://localhost:3000/${post.author_avatar}`
                                 : default_avatar} alt='avatar'>
                                 </img></div>
                             <Link to={`/profile/${post.author_id}`} className="author-link"> {post.author_name}</Link>
@@ -181,7 +189,7 @@ const PostDetailPage = () => {
                         {post.images && post.images.length > 0 && (
                             <div className="post-images">
                                 {post.images.map((image, idx) => (
-                                    <img key={idx} src={`../../API/${image}`} alt={`Post image ${idx + 1}`} className="post-image"/>
+                                    <img key={idx} src={getImageURL(image)} alt={`Post image ${idx + 1}`} className="post-image" onClick={() => setSelectedImage(getImageURL(image))} style={{ cursor: 'pointer' }}/>
                                 ))}
                             </div>
                         )}
@@ -211,6 +219,9 @@ const PostDetailPage = () => {
                     ) : (<CommentSection postId={id} comments={comments} />)}
                 </div>
             </div>
+            {selectedImage && (
+                <ImageModal image={selectedImage} onClose={() => setSelectedImage(null)} />
+            )}
         </div>
     );
 }
